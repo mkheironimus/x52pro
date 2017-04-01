@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<joystick configversion="19" appversion="2.23">
+    <!--The SDL name for a joystick is included for informational purposes only.-->
+    <sdlname>Saitek Saitek X52 Pro Flight Control System</sdlname>
+    <!--The GUID for a joystick is included for informational purposes only.-->
+    <guid>03000000a30600006207000011010000</guid>
+    <sets>
+        <set index="1">
+            <name>red</name>
+            <axis index="1">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="2">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="3">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="4">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="6">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="8">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="9">
+                <throttle>positive</throttle>
+            </axis>
+            <button index="29">
+                <setselect>2</setselect>
+                <setselectcondition>while-held</setselectcondition>
+            </button>
+            <button index="30">
+                <setselect>3</setselect>
+                <setselectcondition>while-held</setselectcondition>
+            </button>
+        </set>
+        <set index="2">
+            <name>purple</name>
+            <axis index="1">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="2">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="3">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="4">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="6">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="8">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="9">
+                <throttle>positive</throttle>
+            </axis>
+            <button index="29">
+                <setselect>1</setselect>
+                <setselectcondition>while-held</setselectcondition>
+            </button>
+        </set>
+        <set index="3">
+            <name>blue</name>
+            <axis index="1">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="2">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="3">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="4">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="5">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="6">
+                <throttle>normal</throttle>
+            </axis>
+            <axis index="7">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="8">
+                <throttle>positive</throttle>
+            </axis>
+            <axis index="9">
+                <throttle>positive</throttle>
+            </axis>
+            <button index="30">
+                <setselect>1</setselect>
+                <setselectcondition>while-held</setselectcondition>
+            </button>
+        </set>
+    </sets>
+</joystick>
