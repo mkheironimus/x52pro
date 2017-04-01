@@ -9,15 +9,22 @@ use x52pro;
 
 sub mfd_setup {
 	my %args = (
-		'js'  => undef,
-		'led' => 32,
-		'mfd' => 64,
+		'js'   => undef,
+		'led'  => 32,
+		'mfd'  => 64,
+		'date' => $x52pro::LIBX52_DATE_FORMAT_DDMMYY,
+		'time' => $x52pro::LIBX52_CLOCK_FORMAT_24HR,
 		@_
 	);
 	# LED brightness
 	x52pro::libx52_set_brightness($args{'js'}, 0, $args{'led'});
 	# MFD light
 	x52pro::libx52_set_brightness($args{'js'}, 1, $args{'mfd'});
+	# Date/time format
+	x52pro::libx52_set_date_format($args{'js'}, $args{'date'});
+	foreach my $c ($x52pro::LIBX52_CLOCK_1, $x52pro::LIBX52_CLOCK_2, $x52pro::LIBX52_CLOCK_3) {
+		x52pro::libx52_set_clock_format($args{'js'}, $c, $args{'time'});
+	}
 	x52pro::libx52_update($args{'js'});
 }
 
