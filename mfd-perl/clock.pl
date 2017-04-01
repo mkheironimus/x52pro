@@ -7,32 +7,45 @@ use AnyEvent;
 
 use x52pro;
 
-sub update_clock {
+sub mfd_setup {
 	my %args = (
-		'x52'   => undef,
-		'time'  => time(),
-		'local' => 1,
+		'js'  => undef,
+		'led' => 32,
+		'mfd' => 64,
 		@_
 	);
-	print("Clock.\n");
-	if (x52pro::libx52_set_clock($args{'x52'}, $args{'time'}, $args{'local'}) == 0) {
-		print("Updating.\n");
-		x52pro::libx52_update($args{'x52'});
-	}
+	# LED brightness
+	x52pro::libx52_set_brightness($args{'js'}, 0, $args{'led'});
+	# MFD light
+	x52pro::libx52_set_brightness($args{'js'}, 1, $args{'mfd'});
+	x52pro::libx52_update($args{'js'});
+}
+
+sub mfd_shutdown {
+	my %args = (
+		'js' => undef,
+		@_
+	);
+	# Turn the lights off
+	mfd_setup('js' => $args{'js'}, 'led' => 0, 'mfd' => 0);
+	# Clean up
+	x52pro::libx52_exit($args{'js'});
 }
 
 our $js = x52pro::libx52_init() or die('Unable to open X52 Pro');
 our $finished = AnyEvent->condvar;
-our $ev_sigint = AnyEvent->signal(
-	'signal' => 'INT',
-	'cb' => sub { print("Interrupt\n"); $finished->send(); }
-);
-our $ev_clock = AnyEvent->timer(
-	'interval' => 10,
-	'cb' => sub { update_clock('x52' => $js) },
-);
 
+our $ev_sigint = AnyEvent->signal('signal' => 'INT',
+	'cb' => sub { print("Interrupt\n"); $finished->send(); });
+
+our $ev_sigterm = AnyEvent->signal('signal' => 'TERM',
+	'cb' => sub { print("Terminated\n"); $finished->send(); });
+
+our $ev_clock = AnyEvent->timer('interval' => 10,
+	'cb' => sub { x52pro::update_clock($js, 1) });
+
+mfd_setup('js' => $js);
 $finished->recv();
-x52pro::libx52_exit($js);
+mfd_shutdown('js' => $js);
 undef $js;
 exit 0;
