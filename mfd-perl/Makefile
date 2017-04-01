@@ -10,10 +10,10 @@ clean:
 .PHONY: clean
 
 x52pro.so: x52pro_wrap.o
-	gcc $(PERL_LINK) $< -lx52 -lx52util -o x52pro.so -Wl,-rpath=$(LIBX52_ROOT)/lib
+	gcc $(PERL_LINK) $< -lx52 -lx52util -o $@ -Wl,-rpath=$(LIBX52_ROOT)/lib
 
 x52pro_wrap.o: x52pro_wrap.c
-	gcc -c $(PERL_COMPILE) -o x52pro_wrap.o $<
+	gcc -c $(PERL_COMPILE) -o $@ $<
 
 x52pro.pm x52pro_wrap.c: x52pro.i
 	swig -perl5 -I$(LIBX52_ROOT)/include $<
